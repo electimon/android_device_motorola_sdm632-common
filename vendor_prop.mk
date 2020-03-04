@@ -244,3 +244,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.lmk.kill_timeout_ms=100 \
     ro.lmk.use_minfree_levels=true
 
+# Perf
+PRODUCT_PRODUCT_PROPERTIES += \
+    sys.use.fifo_ui=1
