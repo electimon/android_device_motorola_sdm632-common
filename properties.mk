@@ -200,3 +200,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
+
+# Perf
+PRODUCT_PRODUCT_PROPERTIES += \
+    sys.use.fifo_ui=1
