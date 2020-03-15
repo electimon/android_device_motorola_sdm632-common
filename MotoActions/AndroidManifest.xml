@@ -97,6 +97,16 @@
             </intent-filter>
         </activity>
 
+        <!-- Vibration Calibration -->
+        <activity
+            android:name="com.moto.actions.VibrationCalibration"
+            android:label="@string/vibrations_customization_title"
+            android:theme="@style/MotoActions">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
