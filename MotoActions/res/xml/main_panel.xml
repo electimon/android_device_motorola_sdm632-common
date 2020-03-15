@@ -49,4 +49,14 @@
                 android:targetClass="com.moto.actions.DozePreferenceActivity" />
     </Preference>
 
+    <Preference
+        android:key="vibration"
+        android:title="@string/vibrations_customization_title"
+        android:summary="@string/vibrations_customization_summary"
+        android:icon="@drawable/ic_settings_doze">
+            <intent
+                android:targetPackage="com.moto.actions"
+                android:targetClass="com.moto.actions.VibrationCalibration" />
+    </Preference>
+
 </PreferenceScreen>
