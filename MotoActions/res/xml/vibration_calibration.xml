@@ -15,11 +15,11 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <SwitchPreference
+    <!--<SwitchPreference
         android:key="vibration_enabled"
         android:title="@string/vibration_enabled_title"
         android:summary="@string/vibration_enabled_summary"
-        android:persistent="false" />
+        android:persistent="false" /> -->
 		
     <com.moto.actions.util.SeekBarPreference
         android:key="vibration_autocal_one"
