@@ -21,10 +21,10 @@
     <string name="kcal_color_temp">Color temperature (K)</string>
 
     <!-- Vibrations -->
-    <string name="vibration_autocal_one_title">COMP</string>
-    <string name="vibration_autocal_two_title">BEMF</string>
-    <string name="vibration_autocal_three_title">GAIN</string>
+    <string name="vibration_autocal_one_title">Spongy-ness</string>
+    <string name="vibration_autocal_two_title">Strength</string>
+    <string name="vibration_autocal_three_title">Springy-ness</string>
     <string name="vibrations_customization_title">Vibration Calibration</string>
-    <string name="vibration_enabled_summary">Vibration driver calibration</string>
+    <string name="vibrations_customization_summary">Vibration driver calibration</string>
 
 </resources>

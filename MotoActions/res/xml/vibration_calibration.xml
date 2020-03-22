@@ -15,16 +15,9 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--<SwitchPreference
-        android:key="vibration_enabled"
-        android:title="@string/vibration_enabled_title"
-        android:summary="@string/vibration_enabled_summary"
-        android:persistent="false" /> -->
-		
     <com.moto.actions.util.SeekBarPreference
         android:key="vibration_autocal_one"
         android:title="@string/vibration_autocal_one_title"        
-        android:dependency="vibration_enabled"
         android:persistent="false"
         android:layout="@layout/slider_preference"
         android:recycleEnabled="false"
@@ -35,7 +28,6 @@
     <com.moto.actions.util.SeekBarPreference
         android:key="vibration_autocal_two"
         android:title="@string/vibration_autocal_two_title"        
-        android:dependency="vibration_enabled"
         android:persistent="false"
         android:layout="@layout/slider_preference"
         android:recycleEnabled="false"
@@ -46,7 +38,6 @@
     <com.moto.actions.util.SeekBarPreference
         android:key="vibration_autocal_three"
         android:title="@string/vibration_autocal_three_title"
-        android:dependency="vibration_enabled"
         android:persistent="false"
         android:layout="@layout/slider_preference"
         android:recycleEnabled="false"

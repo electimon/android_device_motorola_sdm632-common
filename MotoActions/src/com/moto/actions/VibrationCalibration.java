@@ -47,6 +47,7 @@ public class VibrationCalibration extends PreferenceActivity implements
     private SeekBarPreference mVibrationAutocalTwo;
     private SeekBarPreference mVibrationAutocalThree;
     private SwitchPreference mVibrationEnabled;
+    private SharedPreferences mPrefs;
     private boolean mEnabled;
 
     private String mOne;
@@ -61,7 +62,7 @@ public class VibrationCalibration extends PreferenceActivity implements
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.display_cal);
+        setContentView(R.layout.vibration_cal);
 
         addPreferencesFromResource(R.xml.vibration_calibration);
 
@@ -88,19 +89,6 @@ public class VibrationCalibration extends PreferenceActivity implements
     }
 
     public static void restore(Context context) {
-       boolean storeEnabled = PreferenceManager
-                .getDefaultSharedPreferences(context).getBoolean(VibrationCalibration.KEY_VIBRATION_ENABLED, false);
-       if (storeEnabled) {
-           int storedOne = PreferenceManager
-                   .getDefaultSharedPreferences(context).getInt(VibrationCalibration.KEY_VIBRATION_AUTOCAL_ONE, 10);
-           int storedTwo = PreferenceManager
-                   .getDefaultSharedPreferences(context).getInt(VibrationCalibration.KEY_VIBRATION_AUTOCAL_TWO, 127);
-           int storedThree = PreferenceManager
-                   .getDefaultSharedPreferences(context).getInt(VibrationCalibration.KEY_VIBRATION_AUTOCAL_THREE, 10);
-           String storedValue = ((String) String.valueOf(storedOne)
-                   + " " + String.valueOf(storedTwo) + " " +  String.valueOf(storedThree));
-           UtilsKCAL.writeValue(VIBRATION_AUTOCAL_FILE, storedValue);
-       }
     }
 
     @Override
@@ -149,7 +137,7 @@ public class VibrationCalibration extends PreferenceActivity implements
             mTwo = String.valueOf(mPrefs.getInt(KEY_VIBRATION_AUTOCAL_TWO, 127));
             mThree = String.valueOf(mPrefs.getInt(KEY_VIBRATION_AUTOCAL_THREE, 10));
             String storedValue = ((String) String.valueOf(mOne)
-                   + " " + String.valueOf(mTwo) + " " +  String.valueOf(String));
+                   + " " + String.valueOf(mTwo) + " " +  String.valueOf(mThree));
             UtilsKCAL.writeValue(VIBRATION_AUTOCAL_FILE, storedValue);
             return true;
         } else if (preference == mVibrationAutocalOne) {
