@@ -10,5 +10,11 @@
   {
     "repository": "android_system_qcom",
     "target_path": "system/qcom"
+  },
+  {
+    "remote": "github",
+    "repository": "shivatejapeddi/vendor_qcom_common",
+    "target_path": "vendor/qcom/common",
+    "revision": "10.x"
   }
 ]
