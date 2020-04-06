@@ -24,6 +24,7 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.preference.SwitchPreference;
+import android.preference.ListPreference;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -42,11 +43,13 @@ public class VibrationCalibration extends PreferenceActivity implements
     public static final String KEY_VIBRATION_AUTOCAL_ONE = "vibration_autocal_one";
     public static final String KEY_VIBRATION_AUTOCAL_TWO = "vibration_autocal_two";
     public static final String KEY_VIBRATION_AUTOCAL_THREE = "vibration_autocal_three";
+    public static final String KEY_VIBRATION_PRESETS_LIST = "vibration_presets_list";
 
     private SeekBarPreference mVibrationAutocalOne;
     private SeekBarPreference mVibrationAutocalTwo;
     private SeekBarPreference mVibrationAutocalThree;
     private SwitchPreference mVibrationEnabled;
+    private ListPreference mVibrationPresetsListPreference;
     private SharedPreferences mPrefs;
     private boolean mEnabled;
 
@@ -56,10 +59,14 @@ public class VibrationCalibration extends PreferenceActivity implements
 
     private static final String VIBRATION_AUTOCAL_FILE = "/sys/class/leds/vibrator/device/autocal";
 
+    private static Context context;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        context = this;
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.vibration_cal);
@@ -82,6 +89,11 @@ public class VibrationCalibration extends PreferenceActivity implements
         mTwo = String.valueOf(mPrefs.getInt(KEY_VIBRATION_AUTOCAL_TWO, mVibrationAutocalTwo.def));
         mThree = String.valueOf(mPrefs.getInt(KEY_VIBRATION_AUTOCAL_THREE, mVibrationAutocalThree.def));
 
+        mVibrationPresetsListPreference = (ListPreference) findPreference(KEY_VIBRATION_PRESETS_LIST);
+        String vibrationPresetsValue = mPrefs.getString(KEY_VIBRATION_PRESETS_LIST, "0");
+        mVibrationPresetsListPreference.setValue(vibrationPresetsValue);
+        mVibrationPresetsListPreference.setOnPreferenceChangeListener(this);
+
     }
 
     private boolean isSupported(String file) {
@@ -89,6 +101,15 @@ public class VibrationCalibration extends PreferenceActivity implements
     }
 
     public static void restore(Context context) {
+        int storedOne = PreferenceManager
+                .getDefaultSharedPreferences(context).getInt(DisplayCalibration.KEY_KCAL_RED, 256);
+        int storedTwo = PreferenceManager
+                .getDefaultSharedPreferences(context).getInt(DisplayCalibration.KEY_KCAL_GREEN, 256);
+        int storedThree = PreferenceManager
+                .getDefaultSharedPreferences(context).getInt(DisplayCalibration.KEY_KCAL_BLUE, 256);
+        String storedValue = ((String) String.valueOf(storedOne)
+                + " " + String.valueOf(storedTwo) + " " +  String.valueOf(storedThree));
+        UtilsKCAL.writeValue(VIBRATION_AUTOCAL_FILE, storedValue);
     }
 
     @Override
@@ -117,15 +138,36 @@ public class VibrationCalibration extends PreferenceActivity implements
         int one = mVibrationAutocalOne.reset();
         int two = mVibrationAutocalTwo.reset();
         int three = mVibrationAutocalThree.reset();
+	String preset = "0";
 
+	mVibrationPresetsListPreference.setValue(preset);
         mPrefs.edit().putInt(KEY_VIBRATION_AUTOCAL_ONE, one).commit();
         mPrefs.edit().putInt(KEY_VIBRATION_AUTOCAL_TWO, two).commit();
         mPrefs.edit().putInt(KEY_VIBRATION_AUTOCAL_THREE, three).commit();
+	mPrefs.edit().putString(KEY_VIBRATION_PRESETS_LIST, preset).commit();
 
         String storedValue = Integer.toString(one) + " " + Integer.toString(two) + " " +  Integer.toString(three);
 
         UtilsKCAL.writeValue(VIBRATION_AUTOCAL_FILE, storedValue);
 
+    }
+
+    private void refresh() {
+        mVibrationAutocalOne.setInitValue(mPrefs.getInt(KEY_VIBRATION_AUTOCAL_ONE, mVibrationAutocalOne.def));
+        mVibrationAutocalTwo.setInitValue(mPrefs.getInt(KEY_VIBRATION_AUTOCAL_TWO, mVibrationAutocalTwo.def));
+        mVibrationAutocalThree.setInitValue(mPrefs.getInt(KEY_VIBRATION_AUTOCAL_THREE, mVibrationAutocalThree.def));
+    }
+
+    public void setValueABC(String red, String green, String blue) {
+        float A = Float.parseFloat((String) red);
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(KEY_VIBRATION_AUTOCAL_ONE, (int) A).commit();
+        float B = Float.parseFloat((String) green);
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(KEY_VIBRATION_AUTOCAL_TWO, (int) B).commit();
+        float C = Float.parseFloat((String) blue);
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(KEY_VIBRATION_AUTOCAL_THREE, (int) C).commit();
+        String storedValue = ((String) String.valueOf(red)
+               + " " + String.valueOf(green) + " " +  String.valueOf(blue));
+        UtilsKCAL.writeValue(VIBRATION_AUTOCAL_FILE, storedValue);
     }
 
     @Override
@@ -163,6 +205,15 @@ public class VibrationCalibration extends PreferenceActivity implements
             mTwo = String.valueOf(mPrefs.getInt(KEY_VIBRATION_AUTOCAL_TWO, 127));
             String strVal = ((String) mOne + " " + mTwo + " " +newValue);
             UtilsKCAL.writeValue(VIBRATION_AUTOCAL_FILE, strVal);
+            return true;
+        } else if (preference == mVibrationPresetsListPreference) {
+            String currValue = (String) newValue;
+            mPrefs.edit().putString(KEY_VIBRATION_PRESETS_LIST, currValue).commit();
+
+            VibrationPresets pre = new VibrationPresets();
+
+            pre.setValue(currValue);
+	    refresh();
             return true;
         }
         return false;
