@@ -47,6 +47,7 @@ on init
     setprop ro.vendor.fsg-id ${ro.boot.fsg-id}
     setprop ro.vendor.boot.hwrev ${ro.boot.hwrev}
     setprop ro.vendor.zygote ${ro.zygote}
+    write /sys/class/leds/charging/max_brightness 45
 
 on property:ro.vendor.hw.dualsim=true
     setprop persist.radio.multisim.config dsds
