@@ -221,6 +221,9 @@ on boot
     chown system system /sys/class/leds/vibrator/device/autocal
     chown system system /sys/class/leds/vibrator/device/lp_trigger_effect
 
+    # Perrmisions for LED
+    chown system system /sys/class/leds/charging/max_brightness
+
     # KCAL permissions
     chown system system /sys/devices/platform/kcal_ctrl.0/kcal
     chmod 0660 /sys/devices/platform/kcal_ctrl.0/kcal
