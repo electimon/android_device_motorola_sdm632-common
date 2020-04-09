@@ -33,4 +33,8 @@
     <string name="vibration_preset_gabispecial">"Gabi's Special"</string>
     <string name="vibration_presets_list_title">Load Vibration Preset</string>
 
+    <!-- Misc -->
+    <string name="misc_led_brightness_title">Set max LED Brightness</string>
+    <string name="misc_panel_title">Misc Settings</string>
+    <string name="misc_panel_summary">Miscellaneous settings</string>
 </resources>

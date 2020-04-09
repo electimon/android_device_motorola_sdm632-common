@@ -40,6 +40,7 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         context.startService(new Intent(context, ServiceWrapper.class));
             DisplayCalibration.restore(context);
 	    VibrationCalibration.restore(context);
+            MiscPanel.restore(context);
     }
 
     private ServiceConnection serviceConnection = new ServiceConnection() {

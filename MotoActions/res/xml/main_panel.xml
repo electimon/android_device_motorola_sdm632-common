@@ -59,4 +59,14 @@
                 android:targetClass="com.moto.actions.VibrationCalibration" />
     </Preference>
 
+    <Preference
+        android:key="misc"
+        android:title="@string/misc_panel_title"
+        android:summary="@string/misc_panel_summary">
+        android:icon="@drawable/ic_settings_doze">
+        <intent
+                android:targetPackage="com.moto.actions"
+                android:targetClass="com.moto.actions.MiscPanel" />
+    </Preference>
+
 </PreferenceScreen>

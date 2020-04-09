@@ -107,6 +107,16 @@
             </intent-filter>
         </activity>
 
+        <!-- Misc -->
+        <activity
+            android:name="com.moto.actions.MiscPanel"
+            android:label="@string/misc_panel_title"
+            android:theme="@style/MotoActions">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

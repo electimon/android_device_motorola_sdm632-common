@@ -102,11 +102,11 @@ public class VibrationCalibration extends PreferenceActivity implements
 
     public static void restore(Context context) {
         int storedOne = PreferenceManager
-                .getDefaultSharedPreferences(context).getInt(DisplayCalibration.KEY_KCAL_RED, 256);
+                .getDefaultSharedPreferences(context).getInt(VibrationCalibration.KEY_VIBRATION_AUTOCAL_ONE, 255);
         int storedTwo = PreferenceManager
-                .getDefaultSharedPreferences(context).getInt(DisplayCalibration.KEY_KCAL_GREEN, 256);
+                .getDefaultSharedPreferences(context).getInt(VibrationCalibration.KEY_VIBRATION_AUTOCAL_TWO, 255);
         int storedThree = PreferenceManager
-                .getDefaultSharedPreferences(context).getInt(DisplayCalibration.KEY_KCAL_BLUE, 256);
+                .getDefaultSharedPreferences(context).getInt(VibrationCalibration.KEY_VIBRATION_AUTOCAL_THREE, 255);
         String storedValue = ((String) String.valueOf(storedOne)
                 + " " + String.valueOf(storedTwo) + " " +  String.valueOf(storedThree));
         UtilsKCAL.writeValue(VIBRATION_AUTOCAL_FILE, storedValue);
