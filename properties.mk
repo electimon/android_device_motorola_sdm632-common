@@ -160,7 +160,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.ims.disableIMSLogs=0 \
     persist.vendor.ims.disableDebugDataPathLogs=0 \
     persist.vendor.ims.disableADBLogs=0 \
-    persist.vendor.ims.vt.enableadb=3 \
+    persist.vendor.ims.vt.enableadb=1 \
     persist.vendor.ims.disableQXDMLogs=1 \
     ro.vendor.build.vendorprefix=/vendor
 
@@ -201,6 +201,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
 
-# Perf
-PRODUCT_PRODUCT_PROPERTIES += \
-    sys.use.fifo_ui=1
+# Zygote preforking
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.device_config.runtime_native.usap_pool_enabled=true
