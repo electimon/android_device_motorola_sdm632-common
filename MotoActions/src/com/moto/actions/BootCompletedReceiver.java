@@ -39,6 +39,8 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         Log.i(TAG, "Booting");
         context.startService(new Intent(context, ServiceWrapper.class));
             DisplayCalibration.restore(context);
+	    VibrationCalibration.restore(context);
+            MiscPanel.restore(context);
     }
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
