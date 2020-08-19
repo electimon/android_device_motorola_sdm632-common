@@ -10,6 +10,7 @@ import android.preference.SwitchPreference;
 import android.view.MenuItem;
 import android.widget.SeekBar;
 import android.os.Bundle;
+import android.util.Log;
 
 import android.app.ActionBar;
 import com.moto.actions.util.SeekBarPreference;
@@ -26,6 +27,7 @@ public class MiscPanel extends PreferenceActivity implements
     private String mLEDMaxBrightness;
 
     public static final String LED_MAXBRIGHTNESS_FILE = "/sys/class/leds/charging/max_brightness";
+    public static final String LED_BREATH_TOGGLE_FILE = "/sys/class/leds/charging/breath_toggle";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,9 @@ public class MiscPanel extends PreferenceActivity implements
        int storedMax = PreferenceManager.getDefaultSharedPreferences(context).getInt(MiscPanel.KEY_LED_MAX, 255);
 
        UtilsKCAL.writeValue(LED_MAXBRIGHTNESS_FILE, String.valueOf(storedMax));
+       if (storedMax == 0) {
+           UtilsKCAL.writeValue(LED_BREATH_TOGGLE_FILE, "0");
+       }
     }
 
     @Override
@@ -61,6 +66,12 @@ public class MiscPanel extends PreferenceActivity implements
             float val = Float.parseFloat((String) newValue);
             mPrefs.edit().putInt(KEY_LED_MAX, (int) val).commit();
             UtilsKCAL.writeValue(LED_MAXBRIGHTNESS_FILE, String.valueOf((int) val));
+            if (val == 0) {
+                UtilsKCAL.writeValue(LED_BREATH_TOGGLE_FILE, "0");
+            } else {
+                UtilsKCAL.writeValue(LED_BREATH_TOGGLE_FILE, "1");
+            }
+            Log.i("MotoActions", String.format("VALUEA = %2d", (int)val));
 	    return true;
         }
         return false;

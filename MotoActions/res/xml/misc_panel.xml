@@ -23,7 +23,7 @@
         android:recycleEnabled="false"
         app:max_value="255"
         app:min_value="0"
-        app:default_value="1"/>
+        app:default_value="255"/>
 		
 </PreferenceScreen>
 
