@@ -412,7 +412,10 @@ PRODUCT_PACKAGES += \
 
 # Soong
 PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH)
+        $(LOCAL_PATH) \
+        hardware/qcom/display \
+        hardware/qcom/media \
+        hardware/qcom/audio
 
 # Telephony
 PRODUCT_PACKAGES += \
