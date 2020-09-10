@@ -37,4 +37,6 @@
     <string name="misc_led_brightness_title">Set max LED Brightness</string>
     <string name="misc_panel_title">Misc Settings</string>
     <string name="misc_panel_summary">Miscellaneous settings</string>
+    <string name="switch_breath_toggle_title">Disable LED Breathing</string>
+    <string name="switch_breath_toggle_summary">Do not allow the LED to breath</string>
 </resources>
