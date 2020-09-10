@@ -29,7 +29,7 @@
         android:persistent="false"
         android:layout="@layout/slider_preference"
         android:recycleEnabled="false"
-        app:max_value="10"
+        app:max_value="255"
         app:min_value="0"
         app:default_value="9"/>
 		
@@ -39,7 +39,7 @@
         android:persistent="false"
         android:layout="@layout/slider_preference"
         android:recycleEnabled="false"
-        app:max_value="138"
+        app:max_value="255"
         app:min_value="0"
         app:default_value="60"/>
 		
@@ -49,7 +49,7 @@
         android:persistent="false"
         android:layout="@layout/slider_preference"
         android:recycleEnabled="false"
-        app:max_value="56"
+        app:max_value="3"
         app:min_value="0"
         app:default_value="1"/>
 		
