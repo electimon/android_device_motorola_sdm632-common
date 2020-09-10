@@ -24,6 +24,12 @@
         app:max_value="255"
         app:min_value="0"
         app:default_value="1"/>
+
+    <SwitchPreference
+        android:key="switch_breath_toggle"
+        android:defaultValue="false"
+        android:title="@string/switch_breath_toggle_title"
+        android:summary="@string/switch_breath_toggle_summary" />
 		
 </PreferenceScreen>
 
