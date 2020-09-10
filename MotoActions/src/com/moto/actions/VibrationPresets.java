@@ -4,7 +4,7 @@ public class VibrationPresets {
 
     public static final String[] one = {"9", "9", "9", "9", "9"};
     public static final String[] two = {"60", "15", "30", "138", "100"};
-    public static final String[] three = {"1", "1", "1", "1", "56"};
+    public static final String[] three = {"1", "1", "1", "1", "3"};
 
     enum Presets {
         DEFAULT, SOFT, BALANCED, HARD, GABISPECIAL;
