@@ -31,6 +31,8 @@ import android.widget.SeekBar;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.os.Vibrator;
+import android.os.VibrationEffect;
 
 import android.app.ActionBar;
 import com.moto.actions.util.SeekBarPreference;
@@ -110,6 +112,7 @@ public class VibrationCalibration extends PreferenceActivity implements
         String storedValue = ((String) String.valueOf(storedOne)
                 + " " + String.valueOf(storedTwo) + " " +  String.valueOf(storedThree));
         UtilsKCAL.writeValue(VIBRATION_AUTOCAL_FILE, storedValue);
+        vibrate(context);
     }
 
     @Override
@@ -150,6 +153,7 @@ public class VibrationCalibration extends PreferenceActivity implements
 
         UtilsKCAL.writeValue(VIBRATION_AUTOCAL_FILE, storedValue);
 
+        vibrate(context);
     }
 
     private void refresh() {
@@ -189,6 +193,7 @@ public class VibrationCalibration extends PreferenceActivity implements
             mThree = String.valueOf(mPrefs.getInt(KEY_VIBRATION_AUTOCAL_THREE, 10));
             String strVal = ((String) newValue + " " + mTwo + " " +mThree);
             UtilsKCAL.writeValue(VIBRATION_AUTOCAL_FILE, strVal);
+            vibrate(context);
             return true;
         } else if (preference == mVibrationAutocalTwo) {
             float val = Float.parseFloat((String) newValue);
@@ -197,6 +202,7 @@ public class VibrationCalibration extends PreferenceActivity implements
             mThree = String.valueOf(mPrefs.getInt(KEY_VIBRATION_AUTOCAL_THREE, 10));
             String strVal = ((String) mOne + " " + newValue + " " +mThree);
             UtilsKCAL.writeValue(VIBRATION_AUTOCAL_FILE, strVal);
+            vibrate(context);
             return true;
         } else if (preference == mVibrationAutocalThree) {
             float val = Float.parseFloat((String) newValue);
@@ -205,6 +211,7 @@ public class VibrationCalibration extends PreferenceActivity implements
             mTwo = String.valueOf(mPrefs.getInt(KEY_VIBRATION_AUTOCAL_TWO, 127));
             String strVal = ((String) mOne + " " + mTwo + " " +newValue);
             UtilsKCAL.writeValue(VIBRATION_AUTOCAL_FILE, strVal);
+            vibrate(context);
             return true;
         } else if (preference == mVibrationPresetsListPreference) {
             String currValue = (String) newValue;
@@ -217,6 +224,13 @@ public class VibrationCalibration extends PreferenceActivity implements
             return true;
         }
         return false;
+    }
+
+    private static void vibrate(Context c) {
+        Vibrator v = (Vibrator) c.getSystemService(Context.VIBRATOR_SERVICE);
+            if (v != null && v.hasVibrator()) {
+                v.vibrate(VibrationEffect.createOneShot(250, VibrationEffect.DEFAULT_AMPLITUDE));
+        }
     }
 }
 
