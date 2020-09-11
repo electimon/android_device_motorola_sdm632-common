@@ -209,6 +209,11 @@ PRODUCT_PACKAGES += \
     android.hidl.manager@1.0 \
     android.hidl.manager@1.0-java
 
+# HWBinder
+PRODUCT_PACKAGES += \
+    libhwbinder \
+    libhwbinder.vendor
+
 # IMS
 PRODUCT_PACKAGES += \
     ims-ext-common \
@@ -464,6 +469,10 @@ PRODUCT_PACKAGES += \
     libstdc++.vendor \
     libgui_vendor \
     vndk_package
+
+PRODUCT_COPY_FILES += \
+    prebuilts/vndk/v29/arm64/arch-arm64-armv8-a/shared/vndk-core/libprotobuf-cpp-full.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libprotobuf-cpp-full.so \
+    prebuilts/vndk/v29/arm64/arch-arm64-armv8-a/shared/vndk-core/libprotobuf-cpp-lite.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libprotobuf-cpp-lite.so
 
 # Weaver
 PRODUCT_PACKAGES += \
