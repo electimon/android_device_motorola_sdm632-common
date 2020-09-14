@@ -92,4 +92,9 @@ fi
 
 COMMON_BLOB_ROOT="${REVENGEOS_ROOT}/vendor/${VENDOR}/${DEVICE_COMMON}/proprietary"
 
+for i in $(grep -rn 'libhidltransport.so\|libhwbinder.so' ../../../vendor/motorola/sdm632-common/proprietary | awk '{print $3}'); do
+	patchelf --remove-needed "libhwbinder.so" "$i"
+	patchelf --remove-needed "libhidltransport.so" "$i"
+done
+
 "${MY_DIR}/setup-makefiles.sh"
