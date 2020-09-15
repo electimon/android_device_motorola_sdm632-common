@@ -468,6 +468,10 @@ PRODUCT_PACKAGES += \
     libgui_vendor \
     vndk_package
 
+PRODUCT_PACKAGES += \
+    libhwbinder.vendor \
+    libhidltransport.vendor
+
 # Weaver
 PRODUCT_PACKAGES += \
     android.hardware.weaver@1.0
