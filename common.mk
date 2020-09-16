@@ -410,7 +410,8 @@ PRODUCT_PACKAGES += \
 # Shims
 PRODUCT_PACKAGES += \
     libqsap_shim \
-    libshim_dpmframework.vendor
+    libshim_dpmframework.vendor \
+    libmemset_shim
 
 # Soong
 PRODUCT_SOONG_NAMESPACES += \
