@@ -404,7 +404,8 @@ PRODUCT_PACKAGES += \
 
 # Shims
 PRODUCT_PACKAGES += \
-    libqsap_shim
+    libqsap_shim \
+    libshim_dpmframework.vendor
 
 # Soong
 PRODUCT_SOONG_NAMESPACES += \
