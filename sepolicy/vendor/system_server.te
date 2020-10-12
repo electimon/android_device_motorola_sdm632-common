@@ -8,3 +8,5 @@ allow system_server vendor_idc_file:dir r_dir_perms;
 allow system_server vendor_idc_file:file r_file_perms;
 
 allow system_server hal_audio_default:binder { call transfer };
+
+add_service(system_server, default_android_service);
