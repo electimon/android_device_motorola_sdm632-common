@@ -194,6 +194,8 @@ TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_ADDITIONAL_FLAGS := \
     DTC=$(shell pwd)/prebuilts/misc/$(HOST_OS)-x86/dtc/dtc \
     MKDTIMG=$(shell pwd)/prebuilts/misc/$(HOST_OS)-x86/libufdt/mkdtimg
+KERNEL_TOOLCHAIN := $(PWD)/prebuilts/gcc/linux-x86/aarch64/arm64-gcc/bin
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-elf-
 
 # Declare boot header
 BOARD_BOOT_HEADER_VERSION := 1
