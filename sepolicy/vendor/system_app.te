@@ -10,3 +10,6 @@ dontaudit system_app {
   apex_service
   system_suspend_control_service
 }:service_manager find;
+
+allow system_app sysfs_leds:dir search;
+allow system_app sysfs_leds:file rw_file_perms;
