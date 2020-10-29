@@ -13,5 +13,9 @@ dontaudit system_app {
 
 allow system_app sysfs_leds:dir search;
 allow system_app sysfs_leds:file rw_file_perms;
+allow system_app sysfs_graphics:dir search;
+allow system_app sysfs_graphics:file rw_file_perms;
 allow system_app sysfs_kcal:dir search;
 allow system_app sysfs_kcal:file rw_file_perms;
+get_prop(system_app, motoactions_prop);
+set_prop(system_app, motoactions_prop);
