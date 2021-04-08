@@ -27,6 +27,7 @@
  *
  */
 
+#include <bits/epoll_event.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>

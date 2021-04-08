@@ -29,6 +29,7 @@
 #ifndef GPS_EXTENDED_C_H
 #define GPS_EXTENDED_C_H
 
+#include <rdma/rdma_user_cm.h>
 #include <ctype.h>
 #include <stdbool.h>
 #include <stdlib.h>
